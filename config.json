@@ -1,0 +1,249 @@
+{
+  "meta": {
+    "title": "Nguyễn Tiến Chung | Portfolio",
+    "description": "Portfolio cá nhân của Nguyễn Tiến Chung - Software Developer, sinh viên trường Đại học Thăng Long",
+    "favicon": "favicon.ico"
+  },
+  "personal": {
+    "name": "Nguyễn Tiến Chung",
+    "gender": "Nam",
+    "birthYear": 2005,
+    "avatar": "avatar.jpg",
+    "title": "Software Developer • IT Student @ TLU",
+    "status": "Available",
+    "location": "Hà Nội",
+    "hometown": "Hải Phòng",
+    "bio": "Sinh viên năm 3 ngành Công nghệ Thông tin tại trường Đại học Thăng Long. Đam mê phát triển phần mềm với định hướng chuyên sâu về Backend (Java, Spring Boot) và ứng dụng Desktop (Java Swing, C# WinForms). Có kinh nghiệm thiết kế hệ thống RESTful API, làm việc với các hệ CSDL (MySQL, SQL Server, SQLite), tự động hóa quy trình với Docker & CI/CD, cũng như quản trị hệ thống Ubuntu Server.",
+    "resumeUrl": "#"
+  },
+  "stats": [
+    {
+      "num": "3+",
+      "label": "Năm Lập Trình Java"
+    },
+    {
+      "num": "9+",
+      "label": "Dự Án Cá Nhân"
+    },
+    {
+      "num": "99.9%",
+      "label": "Server Uptime Admin"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Ngôn ngữ & Nền tảng",
+      "icon": "fas fa-laptop-code",
+      "items": [
+        {
+          "name": "Java Core",
+          "icon": "fab fa-java",
+          "featured": true
+        },
+        {
+          "name": "C / C# / C++",
+          "icon": "fas fa-code",
+          "featured": false
+        },
+        {
+          "name": "Python",
+          "icon": "fa-brands fa-python",
+          "featured": false
+        },
+        {
+          "name": "HTML5 / CSS3",
+          "icon": "fab fa-html5",
+          "featured": false
+        },
+        {
+          "name": "SQL",
+          "icon": "fas fa-database",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "category": "Hệ thống & Mạng",
+      "icon": "fas fa-server",
+      "items": [
+        {
+          "name": "Ubuntu Server",
+          "icon": "fab fa-linux",
+          "featured": true
+        },
+        {
+          "name": "Git & GitHub",
+          "icon": "fab fa-git-alt",
+          "featured": true
+        },
+        {
+          "name": "Docker",
+          "icon": "fab fa-docker",
+          "featured": false
+        },
+        {
+          "name": "CI / CD",
+          "icon": "fas fa-infinity",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "category": "Game Server & Quản trị",
+      "icon": "fas fa-gamepad",
+      "items": [
+        {
+          "name": "Minecraft Server Admin",
+          "icon": "fas fa-cogs",
+          "featured": false
+        },
+        {
+          "name": "Modding Forge / NeoForge",
+          "icon": "fas fa-puzzle-piece",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "category": "Ngôn ngữ giao tiếp",
+      "icon": "fas fa-language",
+      "items": [
+        {
+          "name": "Tiếng Việt",
+          "icon": "fas fa-globe",
+          "featured": true
+        },
+        {
+          "name": "English",
+          "icon": "fas fa-globe",
+          "featured": false
+        },
+        {
+          "name": "Chinese",
+          "icon": "fas fa-globe",
+          "featured": false
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "thai-duong-pharmacy",
+      "title": "Nhà Thuốc Thái Dương - Pharmacy Store Backend",
+      "icon": "fas fa-clinic-medical",
+      "iconColor": "#4ade80",
+      "description": "Hệ thống RESTful API hiệu năng cao quản lý & bán lẻ dược phẩm trực tuyến dành cho Nhà thuốc Thái Dương. Thiết kế theo chuẩn kiến trúc phân lớp, bảo mật với Spring Security & JWT (hỗ trợ Refresh Token & OTP), tương tác CSDL MySQL với Spring Data JPA, hỗ trợ Dynamic Query lọc nâng cao và container hóa hoàn chỉnh với Docker & Docker Compose.",
+      "tech": [
+        "Java 17",
+        "Spring Boot 3",
+        "Spring Security",
+        "JWT & OTP",
+        "Spring Data JPA",
+        "MySQL 8",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/ChungPr0/pharmacy-store-backend",
+          "icon": "fab fa-github"
+        }
+      ]
+    },
+    {
+      "id": "pos-java-swing",
+      "title": "Phần Mềm Quản Lý Bán Hàng (POS Java Swing)",
+      "icon": "fas fa-desktop",
+      "iconColor": "#38bdf8",
+      "description": "Giải pháp phần mềm quản lý bán hàng gọn nhẹ (Portable) dành cho cửa hàng vừa và nhỏ. Xây dựng trên nền tảng Java Swing GUI & CSDL nhúng SQLite (Plug & Play không cần cài server DB). Hỗ trợ thống kê báo cáo đa dạng theo ngày/tháng/năm, quản lý kho tự động chặn bán quá tồn, tạo và xuất hóa đơn Excel chuyên nghiệp, phân quyền Admin & Staff, ứng dụng Transaction đảm bảo toàn vẹn dữ liệu.",
+      "tech": [
+        "Java 17",
+        "Java Swing GUI",
+        "SQLite",
+        "JDBC & Transactions",
+        "Apache POI (Excel)"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/ChungPr0/Java-Swing-App-Store-Manager",
+          "icon": "fab fa-github"
+        }
+      ]
+    },
+    {
+      "id": "pos-csharp-winforms",
+      "title": "Phần Mềm Quản Lý Bán Hàng (POS C# WinForms)",
+      "icon": "fas fa-desktop",
+      "iconColor": "#a855f7",
+      "description": "Giải pháp phần mềm quản lý bán hàng toàn diện trên nền tảng C# WinForms (.NET 10) & CSDL SQL Server. Giao diện Custom UI phẳng (Flat Design) hiện đại, kiến trúc tối ưu (Lazy Loading State). Hỗ trợ Dashboard thống kê doanh thu thời gian thực (biểu đồ Cột & Tròn Custom), phân quyền Admin & Employee chống xâm nhập đa lớp, quản lý kho tự động cảnh báo tồn kho và hoàn kho khi hủy đơn, giao diện tạo hóa đơn siêu tốc chống SQL Injection với Parameterized Queries.",
+      "tech": [
+        "C# 10",
+        ".NET 10",
+        "WinForms GUI",
+        "SQL Server",
+        "ADO.NET",
+        "Custom UI Flat"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/ChungPr0/WinForms-App-Store-Manager",
+          "icon": "fab fa-github"
+        }
+      ]
+    },
+    {
+      "id": "chuong-ga-discord-bot",
+      "title": "Discord Bot",
+      "icon": "fab fa-discord",
+      "iconColor": "#5865f2",
+      "description": "Trợ lý Discord đa năng tự động hóa chuyên nghiệp dành cho máy chủ Discord. Xây dựng bằng Java 17 & JDA (Java Discord API). Hỗ trợ hệ thống Join-to-Create (kênh thoại tạm tự động kèm Bảng điều khiển nút bấm tương tác), tự động dọn dẹp kênh & khôi phục state, Reaction Role tự cấp rank, tin nhắn chào mừng/tạm biệt Custom Embed, vinh danh Boost Nitro tự động, tích hợp CI/CD tự động triển khai VPS với GitHub Actions & Docker.",
+      "tech": [
+        "Java 17",
+        "JDA (Java Discord API)",
+        "Maven",
+        "Docker",
+        "CI/CD GitHub Actions"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/ChungPr0/chuong-ga-discord-bot",
+          "icon": "fab fa-github"
+        }
+      ]
+    }
+  ],
+  "socials": [
+    {
+      "name": "Email",
+      "icon": "fas fa-envelope",
+      "url": "https://mail.google.com/mail/?view=cm&fs=1&to=tienchung310725@gmail.com"
+    },
+    {
+      "name": "GitHub",
+      "icon": "fab fa-github",
+      "url": "https://github.com/ChungPr0"
+    },
+    {
+      "name": "Facebook",
+      "icon": "fab fa-facebook",
+      "url": "https://facebook.com/chung.invisible.me"
+    },
+    {
+      "name": "Telegram",
+      "icon": "fab fa-telegram-plane",
+      "url": "https://t.me/tienchung310725"
+    },
+    {
+      "name": "TikTok",
+      "icon": "fab fa-tiktok",
+      "url": "https://www.tiktok.com/@chung.pro.dev"
+    }
+  ],
+  "footer": {
+    "author": "Nguyễn Tiến Chung",
+    "slogan": "Lửa gần Code lâu ngày cũng Bug"
+  }
+}
