@@ -19,7 +19,7 @@
   "stats": [
     {
       "num": "3+",
-      "label": "Năm Lập Trình Java"
+      "label": "Năm Code Java"
     },
     {
       "num": "9+",
@@ -37,28 +37,23 @@
       "items": [
         {
           "name": "Java Core",
-          "icon": "fab fa-java",
-          "featured": true
+          "icon": "fab fa-java"
         },
         {
           "name": "C / C# / C++",
-          "icon": "fas fa-code",
-          "featured": false
+          "icon": "fas fa-code"
         },
         {
           "name": "Python",
-          "icon": "fa-brands fa-python",
-          "featured": false
+          "icon": "fa-brands fa-python"
         },
         {
           "name": "HTML5 / CSS3",
-          "icon": "fab fa-html5",
-          "featured": false
+          "icon": "fab fa-html5"
         },
         {
           "name": "SQL",
-          "icon": "fas fa-database",
-          "featured": false
+          "icon": "fas fa-database"
         }
       ]
     },
@@ -68,23 +63,19 @@
       "items": [
         {
           "name": "Ubuntu Server",
-          "icon": "fab fa-linux",
-          "featured": true
+          "icon": "fab fa-linux"
         },
         {
           "name": "Git & GitHub",
-          "icon": "fab fa-git-alt",
-          "featured": true
+          "icon": "fab fa-git-alt"
         },
         {
           "name": "Docker",
-          "icon": "fab fa-docker",
-          "featured": false
+          "icon": "fab fa-docker"
         },
         {
           "name": "CI / CD",
-          "icon": "fas fa-infinity",
-          "featured": false
+          "icon": "fas fa-infinity"
         }
       ]
     },
@@ -94,13 +85,11 @@
       "items": [
         {
           "name": "Minecraft Server Admin",
-          "icon": "fas fa-cogs",
-          "featured": false
+          "icon": "fas fa-cogs"
         },
         {
           "name": "Modding Forge / NeoForge",
-          "icon": "fas fa-puzzle-piece",
-          "featured": false
+          "icon": "fas fa-puzzle-piece"
         }
       ]
     },
@@ -110,18 +99,15 @@
       "items": [
         {
           "name": "Tiếng Việt",
-          "icon": "fas fa-globe",
-          "featured": true
+          "icon": "fas fa-globe"
         },
         {
           "name": "English",
-          "icon": "fas fa-globe",
-          "featured": false
+          "icon": "fas fa-globe"
         },
         {
-          "name": "Chinese",
-          "icon": "fas fa-globe",
-          "featured": false
+          "name": "中文",
+          "icon": "fas fa-globe"
         }
       ]
     }
@@ -129,18 +115,19 @@
   "projects": [
     {
       "id": "thai-duong-pharmacy",
-      "title": "Nhà Thuốc Thái Dương - Pharmacy Store Backend",
+      "title": "Trang Web Cửa Hàng Thuốc (Backend Java Spring Boot)",
       "icon": "fas fa-clinic-medical",
       "iconColor": "#4ade80",
-      "description": "Hệ thống RESTful API hiệu năng cao quản lý & bán lẻ dược phẩm trực tuyến dành cho Nhà thuốc Thái Dương. Thiết kế theo chuẩn kiến trúc phân lớp, bảo mật với Spring Security & JWT (hỗ trợ Refresh Token & OTP), tương tác CSDL MySQL với Spring Data JPA, hỗ trợ Dynamic Query lọc nâng cao và container hóa hoàn chỉnh với Docker & Docker Compose.",
+      "description": "Hệ thống RESTful API quản lý và bán lẻ thuốc, dược phẩm dành cho các nhà thuốc. Thiết kế theo chuẩn kiến trúc phân lớp, bảo mật với Spring Security & JWT, Cơ sở dữ liệu MySQL với Spring Data JPA, tích hợp CI/CD tự động triển khai VPS với GitHub Actions & Docker.",
       "tech": [
         "Java 17",
         "Spring Boot 3",
         "Spring Security",
-        "JWT & OTP",
+        "JWT",
         "Spring Data JPA",
         "MySQL 8",
-        "Docker"
+        "Docker",
+        "CI/CD"
       ],
       "links": [
         {
@@ -155,13 +142,12 @@
       "title": "Phần Mềm Quản Lý Bán Hàng (POS Java Swing)",
       "icon": "fas fa-desktop",
       "iconColor": "#38bdf8",
-      "description": "Giải pháp phần mềm quản lý bán hàng gọn nhẹ (Portable) dành cho cửa hàng vừa và nhỏ. Xây dựng trên nền tảng Java Swing GUI & CSDL nhúng SQLite (Plug & Play không cần cài server DB). Hỗ trợ thống kê báo cáo đa dạng theo ngày/tháng/năm, quản lý kho tự động chặn bán quá tồn, tạo và xuất hóa đơn Excel chuyên nghiệp, phân quyền Admin & Staff, ứng dụng Transaction đảm bảo toàn vẹn dữ liệu.",
+      "description": "Giải pháp phần mềm quản lý bán hàng gọn nhẹ dành cho cửa hàng vừa và nhỏ. Xây dựng trên nền tảng Java Swing & CSDL nhúng SQLite. Hỗ trợ thống kê báo cáo, quản lý kho, tạo và xuất hóa đơn, phân quyền, bảo mật cơ bản.",
       "tech": [
         "Java 17",
-        "Java Swing GUI",
+        "Java Swing",
         "SQLite",
-        "JDBC & Transactions",
-        "Apache POI (Excel)"
+        "JDBC"
       ],
       "links": [
         {
@@ -176,19 +162,17 @@
       "title": "Phần Mềm Quản Lý Bán Hàng (POS C# WinForms)",
       "icon": "fas fa-desktop",
       "iconColor": "#a855f7",
-      "description": "Giải pháp phần mềm quản lý bán hàng toàn diện trên nền tảng C# WinForms (.NET 10) & CSDL SQL Server. Giao diện Custom UI phẳng (Flat Design) hiện đại, kiến trúc tối ưu (Lazy Loading State). Hỗ trợ Dashboard thống kê doanh thu thời gian thực (biểu đồ Cột & Tròn Custom), phân quyền Admin & Employee chống xâm nhập đa lớp, quản lý kho tự động cảnh báo tồn kho và hoàn kho khi hủy đơn, giao diện tạo hóa đơn siêu tốc chống SQL Injection với Parameterized Queries.",
+      "description": "Giải pháp phần mềm quản lý bán hàng toàn diện trên nền tảng C# WinForms & CSDL SQL Server. Giao diện hiện đại, kiến trúc tối ưu. Hỗ trợ thống kê báo cáo, quản lý kho, tạo và xuất hóa đơn, phân quyền, bảo mật cơ bản.",
       "tech": [
         "C# 10",
         ".NET 10",
-        "WinForms GUI",
-        "SQL Server",
-        "ADO.NET",
-        "Custom UI Flat"
+        "WinForms",
+        "SQL Server"
       ],
       "links": [
         {
           "type": "github",
-          "url": "https://github.com/ChungPr0/WinForms-App-Store-Manager",
+          "url": "https://github.com/ChungPr0/DotNet-Store-Manager",
           "icon": "fab fa-github"
         }
       ]
@@ -198,13 +182,13 @@
       "title": "Discord Bot",
       "icon": "fab fa-discord",
       "iconColor": "#5865f2",
-      "description": "Trợ lý Discord đa năng tự động hóa chuyên nghiệp dành cho máy chủ Discord. Xây dựng bằng Java 17 & JDA (Java Discord API). Hỗ trợ hệ thống Join-to-Create (kênh thoại tạm tự động kèm Bảng điều khiển nút bấm tương tác), tự động dọn dẹp kênh & khôi phục state, Reaction Role tự cấp rank, tin nhắn chào mừng/tạm biệt Custom Embed, vinh danh Boost Nitro tự động, tích hợp CI/CD tự động triển khai VPS với GitHub Actions & Docker.",
+      "description": "Trợ lý Discord đa năng dành cho máy chủ Discord. Hỗ trợ hệ thống quản lý kênh văn bản, kênh thoại, cấp phát rank tự động, tin nhắn chào mừng/tạm biệt Custom, vinh danh Boost Nitro, tích hợp CI/CD tự động triển khai VPS với GitHub Actions & Docker.",
       "tech": [
         "Java 17",
-        "JDA (Java Discord API)",
+        "JDA",
         "Maven",
         "Docker",
-        "CI/CD GitHub Actions"
+        "CI/CD"
       ],
       "links": [
         {
