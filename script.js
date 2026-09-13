@@ -1,3 +1,76 @@
+// MULTI-LANGUAGE STATE
+let appConfigData = null;
+let currentLang = 'vi';
+let lastAppError = null;
+
+// GET TEXT HELPER: SUPPORTS OBJECT { vi: '...', en: '...' }, STRING, OR NUMBER
+function getText(val, lang = currentLang) {
+    if (!val) return '';
+    if (typeof val === 'string') return val;
+    if (typeof val === 'number') return String(val);
+    if (typeof val === 'object') {
+        return val[lang] || val['vi'] || val['en'] || '';
+    }
+    return String(val);
+}
+
+// GET INITIAL LANGUAGE: LOCALSTORAGE -> BROWSER DETECT -> FALLBACK
+function getInitialLanguage() {
+    const saved = localStorage.getItem('preferred_lang');
+    if (saved === 'vi' || saved === 'en') {
+        return saved;
+    }
+    const browserLang = (navigator.language || (navigator.languages && navigator.languages[0]) || '').toLowerCase();
+    if (browserLang.startsWith('vi')) {
+        return 'vi';
+    }
+    return 'en';
+}
+
+// SWITCH LANGUAGE INSTANTLY WITHOUT RELOADING
+function setLanguage(lang) {
+    if (lang !== 'vi' && lang !== 'en') return;
+    currentLang = lang;
+    localStorage.setItem('preferred_lang', lang);
+    document.documentElement.lang = lang;
+    renderLanguageSwitcher();
+    if (appConfigData) {
+        renderAll(appConfigData);
+    } else {
+        showWebError(lastAppError);
+    }
+}
+
+// RENDER LANGUAGE SWITCHER UI
+function renderLanguageSwitcher() {
+    const container = document.getElementById('lang-switcher');
+    if (!container) return;
+
+    container.innerHTML = `
+        <button class="lang-btn ${currentLang === 'vi' ? 'active' : ''}" id="lang-btn-vi" type="button" aria-label="Tiếng Việt">
+            <span class="lang-flag">🇻🇳</span><span class="lang-code">VI</span>
+        </button>
+        <button class="lang-btn ${currentLang === 'en' ? 'active' : ''}" id="lang-btn-en" type="button" aria-label="English">
+            <span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span>
+        </button>
+    `;
+
+    const viBtn = document.getElementById('lang-btn-vi');
+    const enBtn = document.getElementById('lang-btn-en');
+
+    if (viBtn) {
+        viBtn.addEventListener('click', () => {
+            if (currentLang !== 'vi') setLanguage('vi');
+        });
+    }
+
+    if (enBtn) {
+        enBtn.addEventListener('click', () => {
+            if (currentLang !== 'en') setLanguage('en');
+        });
+    }
+}
+
 // INIT APP
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
@@ -9,36 +82,65 @@ async function initApp() {
     initSpotlight();
     initRgbLedCycle();
 
+    currentLang = getInitialLanguage();
+    document.documentElement.lang = currentLang;
+    renderLanguageSwitcher();
+
     try {
         const response = await fetch('config.json?t=' + Date.now());
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText || 'File not found'}`);
         }
-        const data = await response.json();
-        renderAll(data);
+        appConfigData = await response.json();
+        lastAppError = null;
+        renderAll(appConfigData);
     } catch (error) {
         console.error('Failed to load configuration file:', error);
+        lastAppError = error;
         showWebError(error);
     }
 }
 
 // DISPLAY ERROR ON WEBPAGE
 function showWebError(error) {
+    lastAppError = error;
     const appContainer = document.getElementById('app');
     if (appContainer) {
+        const title = currentLang === 'vi' ? 'Bảo Trì Hệ Thống' : 'System Maintenance';
+        const msg = currentLang === 'vi' 
+            ? 'Không thể tải tệp cấu hình (config.json).' 
+            : 'Unable to load configuration file (config.json).';
+        const errorDetail = error ? (error.message || String(error)) : 'Unknown error';
+        const retryText = currentLang === 'vi' ? 'Thử Lại' : 'Retry';
+
         appContainer.innerHTML = `
-            <div class="card" style="text-align: center; padding: 40px 20px;">
-                <h2 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: #ef4444;">
-                    <i class="fas fa-exclamation-triangle"></i> System Maintenance
+            <div class="card" style="text-align: center; padding: 48px 24px; max-width: 580px; margin: 40px auto;">
+                <div style="font-size: 2.5rem; color: #f59e0b; margin-bottom: 16px;">
+                    <i class="fas fa-screwdriver-wrench"></i>
+                </div>
+                <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: var(--text-primary);">
+                    ${title}
                 </h2>
-                <p style="color: var(--text-secondary); margin-bottom: 8px;">
-                    Unable to load configuration file.
+                <p style="color: var(--text-secondary); margin-bottom: 14px; font-size: 0.95rem; line-height: 1.6;">
+                    ${msg}
                 </p>
-                <small style="color: var(--text-muted); font-family: var(--font-mono);">
-                    Details: ${error.message}
-                </small>
+                <div style="background: rgba(0,0,0,0.35); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin-bottom: 22px;">
+                    <small style="color: #ef4444; font-family: var(--font-mono); font-size: 0.8rem; word-break: break-all;">
+                        <i class="fas fa-circle-exclamation"></i> ${errorDetail}
+                    </small>
+                </div>
+                <button type="button" class="btn btn-primary" id="btn-retry-app" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-rotate-right"></i> ${retryText}
+                </button>
             </div>
         `;
+
+        const retryBtn = document.getElementById('btn-retry-app');
+        if (retryBtn) {
+            retryBtn.addEventListener('click', () => {
+                initApp();
+            });
+        }
     }
 }
 
@@ -145,143 +247,34 @@ function initRgbLedCycle() {
 // RENDER ALL SECTIONS
 function renderAll(data) {
     if (!data) return;
-    if (data.meta) renderMeta(data.meta);
-    if (data.personal) renderProfile(data.personal);
-    if (data.stats) renderStats(data.stats);
-    if (data.skills) renderSkills(data.skills);
-    if (data.projects) renderProjects(data.projects);
-    renderFooter(data);
 
-    runTerminalConsole(data);
-}
+    // Support both inline bilingual structure and legacy separate vi/en trees
+    const isLegacyBranch = data.vi && data.en && !data.personal;
+    const activeData = isLegacyBranch ? (data[currentLang] || data.vi) : data;
+    const ui = activeData.ui || {};
 
-// INTERACTIVE TERMINAL CONSOLE & SEQUENTIAL AUTO-SCROLL LOAD
-async function runTerminalConsole(data) {
-    const termSection = document.getElementById('terminal-section');
-    if (!termSection) return;
-
-    const personal = data.personal || {};
-
-    const profileCard = document.getElementById('profile-card');
-    const statsSection = document.getElementById('stats-section');
-    const skillsSection = document.getElementById('skills-section');
-    const projectsSection = document.getElementById('projects-section');
-    const footerSection = document.getElementById('footer-section');
-
-    const sectionsToReveal = [profileCard, statsSection, skillsSection, projectsSection, footerSection];
-
-    sectionsToReveal.forEach(sec => {
-        if (sec) {
-            sec.style.opacity = '0';
-            sec.style.transform = 'translateY(24px)';
-            sec.style.pointerEvents = 'none';
-            sec.style.transition = 'opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1)';
-        }
+    renderMeta(activeData.meta);
+    renderProfile(activeData.personal, ui);
+    renderStats(activeData.stats, ui);
+    renderSkills(activeData.skills, ui);
+    renderProjects(activeData.projects, ui);
+    renderFooter({
+        socials: data.socials || (data.common && data.common.socials) || [],
+        footer: activeData.footer,
+        ui: ui
     });
-
-    termSection.innerHTML = `
-        <div class="section-title">
-            <div class="title-left">
-                <i class="fas fa-terminal"></i> Console
-            </div>
-        </div>
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <span class="terminal-dot red"></span>
-                    <span class="terminal-dot yellow"></span>
-                    <span class="terminal-dot green"></span>
-                </div>
-                <div class="terminal-title-text"><i class="fas fa-code"></i> tienchung-vps:~$</div>
-            </div>
-            <div class="terminal-body">
-                <pre class="term-code" id="term-code-display"></pre>
-            </div>
-        </div>
-    `;
-
-    const codeDisplay = document.getElementById('term-code-display');
-    if (!codeDisplay) return;
-
-    const statusText = personal.status || 'Available';
-
-    const consoleSteps = [
-        { text: "$ systemctl start tienchung-portfolio.service\n", speed: 35, pauseAfter: 400 },
-        { text: "[OK] Initializing system shell environment...\n", speed: 25, pauseAfter: 500 },
-        { text: `[OK] Loading profile: ${personal.name || 'Nguyễn Tiến Chung'}...\n`, speed: 28, reveal: profileCard, scrollTarget: profileCard, pauseAfter: 900 },
-        { text: `[OK] Loading status: [${statusText}]...\n`, speed: 28, updateStatus: true, pauseAfter: 700 },
-        { text: "[OK] Loading stats & metrics...\n", speed: 25, reveal: statsSection, scrollTarget: statsSection, pauseAfter: 900 },
-        { text: "[OK] Loading skills & technologies...\n", speed: 25, reveal: skillsSection, scrollTarget: skillsSection, pauseAfter: 900 },
-        { text: "[OK] Loading featured projects...\n", speed: 25, reveal: projectsSection, scrollTarget: projectsSection, pauseAfter: 900 },
-        { text: "[OK] Loading contact info & socials...\n", speed: 25, reveal: footerSection, scrollTarget: footerSection, pauseAfter: 900 },
-        { text: "[OK] System status: 200 OK - All services operational. DONE.\n", speed: 22, pauseAfter: 1000 }
-    ];
-
-    let currentLog = "";
-
-    for (const step of consoleSteps) {
-        for (let i = 0; i < step.text.length; i++) {
-            currentLog += step.text[i];
-            codeDisplay.innerHTML = formatConsoleOutput(currentLog) + `<span class="cursor-blink"></span>`;
-            await new Promise(r => setTimeout(r, step.speed));
-        }
-
-        if (step.reveal) {
-            step.reveal.style.opacity = '1';
-            step.reveal.style.transform = 'translateY(0)';
-            step.reveal.style.pointerEvents = 'auto';
-        }
-
-        if (step.updateStatus) {
-            activateProfileStatus();
-        }
-
-        if (step.scrollTarget) {
-            step.scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        if (step.pauseAfter) {
-            await new Promise(r => setTimeout(r, step.pauseAfter));
-        }
-    }
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ACTIVATE REAL PROFILE STATUS ON CONSOLE STEP
-function activateProfileStatus() {
-    const statusBtn = document.getElementById('btn-status-contact');
-    const statusTextTarget = document.getElementById('status-text-target');
-    if (!statusBtn || !statusTextTarget) return;
-
-    const targetStatus = statusBtn.dataset.targetStatus || 'Available';
-    const targetClass = statusBtn.dataset.targetClass || 'available';
-
-    statusBtn.classList.remove('other');
-    statusBtn.classList.add(targetClass);
-    statusTextTarget.innerText = targetStatus;
-
-    statusBtn.style.transform = 'scale(1.18)';
-    setTimeout(() => {
-        statusBtn.style.transform = 'translateY(0) scale(1)';
-    }, 280);
-}
-
-function formatConsoleOutput(text) {
-    return text
-        .replace(/\$ (.*)/g, '<span class="str">$ $1</span>')
-        .replace(/\[OK\]/g, '<span class="kw">[OK]</span>')
-        .replace(/DONE\./g, '<span class="str">DONE.</span>');
 }
 
 // META INFO
 function renderMeta(meta) {
     if (!meta) return;
-    if (meta.title) document.title = meta.title;
+    const pageTitle = getText(meta.title, currentLang);
+    if (pageTitle) document.title = pageTitle;
 
     const descTag = document.querySelector('meta[name="description"]');
-    if (descTag && meta.description) {
-        descTag.setAttribute('content', meta.description);
+    const desc = getText(meta.description, currentLang);
+    if (descTag && desc) {
+        descTag.setAttribute('content', desc);
     }
 
     const faviconTag = document.getElementById('favicon-link');
@@ -291,62 +284,75 @@ function renderMeta(meta) {
 }
 
 // HEADER INFO
-function renderProfile(personal) {
+function renderProfile(personal, ui) {
     const profileCard = document.getElementById('profile-card');
     if (!profileCard || !personal) return;
+    ui = ui || {};
 
     const avatarSrc = personal.avatar || 'avatar.jpg';
-    const statusText = personal.status || 'Available';
+    const rawStatus = personal.status !== undefined ? personal.status : ui.statusDefault;
+    const statusText = getText(rawStatus, currentLang) || 'Available';
     let statusClass = 'other';
     const lowerStatus = statusText.toLowerCase();
 
-    if (lowerStatus === 'available') {
+    if (lowerStatus.includes('available')) {
         statusClass = 'available';
-    } else if (lowerStatus === 'busy') {
+    } else if (lowerStatus.includes('busy')) {
         statusClass = 'busy';
     } else {
         statusClass = 'other';
     }
 
+    const name = getText(personal.name, currentLang);
+    const title = getText(personal.title, currentLang);
+    const gender = getText(personal.gender, currentLang);
+    const location = getText(personal.location, currentLang);
+    const hometown = getText(personal.hometown, currentLang);
+    const bio = getText(personal.bio, currentLang);
+    const hoverText = getText(ui.statusHover, currentLang) || (currentLang === 'vi' ? 'Liên Hệ Ngay' : 'Contact Now');
+    const livesInText = getText(ui.livesIn, currentLang) || (currentLang === 'vi' ? 'Sống tại' : 'Based in');
+    const hometownText = getText(ui.hometown, currentLang) || (currentLang === 'vi' ? 'Quê quán' : 'Hometown');
+    const resumeText = getText(ui.viewResume, currentLang) || (currentLang === 'vi' ? 'Xem CV / Resume' : 'View CV / Resume');
+
     profileCard.innerHTML = `
         <div class="profile-header">
             <div class="profile-avatar-wrapper">
-                <img src="${avatarSrc}" alt="${personal.name || 'Avatar'}" class="profile-avatar" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(personal.name || 'NTC')}&background=1e293b&color=34d399'">
+                <img src="${avatarSrc}" alt="${name || 'Avatar'}" class="profile-avatar" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(name || 'NTC')}&background=1e293b&color=34d399'">
             </div>
             <div class="profile-info">
                 <div class="profile-top-row">
-                    <h1 class="profile-name">${personal.name || ''}</h1>
-                    <a href="#footer-section" class="status-pulse-wrapper other" id="btn-status-contact" data-target-status="${statusText}" data-target-class="${statusClass}">
+                    <h1 class="profile-name">${name || ''}</h1>
+                    <a href="#footer-section" class="status-pulse-wrapper ${statusClass}" id="btn-status-contact">
                         <span class="status-pulse">
                             <span class="dot-core"></span>
                             <span class="dot-ring"></span>
                         </span>
-                        <span class="status-text-default" id="status-text-target">Connecting...</span>
-                        <span class="status-text-hover">Liên Hệ Ngay</span>
+                        <span class="status-text-default" id="status-text-target">${statusText}</span>
+                        <span class="status-text-hover">${hoverText}</span>
                     </a>
                 </div>
                 
                 <div class="profile-title">
-                    <i class="fas fa-terminal"></i> ${personal.title || ''}
+                    <i class="fas fa-code"></i> ${title || ''}
                 </div>
                 
                 <div class="profile-details-grid">
-                    ${personal.gender || personal.birthYear ? `
+                    ${gender || personal.birthYear ? `
                         <span class="detail-item">
                             <i class="fas fa-user"></i> 
-                            ${personal.gender || ''}${personal.gender && personal.birthYear ? ' • ' : ''}${personal.birthYear || ''}
+                            ${gender || ''}${gender && personal.birthYear ? ' • ' : ''}${personal.birthYear || ''}
                         </span>
                     ` : ''}
-                    ${personal.location ? `<span class="detail-item"><i class="fas fa-location-dot"></i> Sống tại: ${personal.location}</span>` : ''}
-                    ${personal.hometown ? `<span class="detail-item"><i class="fas fa-house"></i> Quê quán: ${personal.hometown}</span>` : ''}
+                    ${location ? `<span class="detail-item"><i class="fas fa-location-dot"></i> ${livesInText}: ${location}</span>` : ''}
+                    ${hometown ? `<span class="detail-item"><i class="fas fa-house"></i> ${hometownText}: ${hometown}</span>` : ''}
                 </div>
 
-                <p class="profile-bio">${personal.bio || ''}</p>
+                <p class="profile-bio">${bio || ''}</p>
 
                 ${personal.resumeUrl && personal.resumeUrl !== '#' ? `
                     <div class="profile-actions">
                         <a href="${personal.resumeUrl}" target="_blank" rel="noopener" class="btn btn-primary">
-                            <i class="fas fa-file-pdf"></i> Xem CV / Resume
+                            <i class="fas fa-file-pdf"></i> ${resumeText}
                         </a>
                     </div>
                 ` : ''}
@@ -381,25 +387,29 @@ function renderProfile(personal) {
 }
 
 // STATS & ANIMATED COUNTERS
-function renderStats(stats) {
+function renderStats(stats, ui) {
     const statsSection = document.getElementById('stats-section');
     if (!statsSection) return;
     if (!Array.isArray(stats) || stats.length === 0) {
         statsSection.style.display = 'none';
         return;
     }
+    statsSection.style.display = '';
+    ui = ui || {};
+
+    const statsTitle = getText(ui.statsTitle, currentLang) || (currentLang === 'vi' ? 'Thống Kê Nổi Bật' : 'Key Highlights');
 
     const statsHtml = stats.map(s => `
         <div class="stat-item">
             <div class="stat-num" data-target="${s.num}">${s.num}</div>
-            <div class="stat-label">${s.label}</div>
+            <div class="stat-label">${getText(s.label, currentLang)}</div>
         </div>
     `).join('');
 
     statsSection.innerHTML = `
         <div class="section-title">
             <div class="title-left">
-                <i class="fas fa-chart-simple"></i> Thống Kê Nổi Bật
+                <i class="fas fa-chart-simple"></i> ${statsTitle}
             </div>
         </div>
         <div class="stats-grid">
@@ -462,23 +472,27 @@ function animateStatNum(el) {
 }
 
 // SKILLS
-function renderSkills(skills) {
+function renderSkills(skills, ui) {
     const skillsSection = document.getElementById('skills-section');
     if (!skillsSection) return;
     if (!Array.isArray(skills) || skills.length === 0) {
         skillsSection.style.display = 'none';
         return;
     }
+    skillsSection.style.display = '';
+    ui = ui || {};
+
+    const skillsTitle = getText(ui.skillsTitle, currentLang) || (currentLang === 'vi' ? 'Kỹ Năng & Công Nghệ' : 'Skills & Technologies');
 
     const categoriesHtml = skills.map(cat => `
         <div class="skill-category">
             <div class="skill-category-title">
-                <i class="${cat.icon || 'fas fa-code'}"></i> ${cat.category}
+                <i class="${cat.icon || 'fas fa-code'}"></i> ${getText(cat.category, currentLang)}
             </div>
             <div class="skill-tags">
-                ${(cat.items).map(item => `
+                ${(cat.items || []).map(item => `
                     <span class="skill-tag">
-                        <i class="${item.icon || 'fas fa-check'}"></i> ${item.name}
+                        <i class="${item.icon || 'fas fa-check'}"></i> ${getText(item.name, currentLang)}
                     </span>
                 `).join('')}
             </div>
@@ -488,7 +502,7 @@ function renderSkills(skills) {
     skillsSection.innerHTML = `
         <div class="section-title">
             <div class="title-left">
-                <i class="fas fa-code"></i> Kỹ Năng & Công Nghệ
+                <i class="fas fa-code"></i> ${skillsTitle}
             </div>
         </div>
         <div class="skills-container">
@@ -498,37 +512,50 @@ function renderSkills(skills) {
 }
 
 // PROJECTS
-function renderProjects(projects) {
+function renderProjects(projects, ui) {
     const projectsSection = document.getElementById('projects-section');
     if (!projectsSection) return;
     if (!Array.isArray(projects) || projects.length === 0) {
         projectsSection.style.display = 'none';
         return;
     }
+    projectsSection.style.display = '';
+    ui = ui || {};
+
+    const projectsTitle = getText(ui.projectsTitle, currentLang) || (currentLang === 'vi' ? 'Dự Án Nổi Bật' : 'Featured Projects');
 
     const projectsHtml = projects.map(proj => {
-        const linksHtml = (proj.links || []).map(link => `
-            <a href="${link.url}" target="_blank" rel="noopener" class="project-link">
-                <i class="${link.icon || 'fas fa-external-link-alt'}"></i>
-            </a>
-        `).join('');
+        const linksHtml = (proj.links || []).map(link => {
+            const rawLabel = link.label || link.name || (link.type === 'github' ? 'GitHub' : (link.type === 'demo' ? 'Live Demo' : 'Link'));
+            const label = getText(rawLabel, currentLang);
+            return `
+                <a href="${link.url}" target="_blank" rel="noopener" class="project-link" title="${label}" aria-label="${label}">
+                    <i class="${link.icon || 'fas fa-external-link-alt'}"></i>
+                    <span class="project-link-label">${label}</span>
+                    <i class="fas fa-arrow-up-right-from-square link-arrow"></i>
+                </a>
+            `;
+        }).join('');
 
         const techHtml = (proj.tech || []).map(t => `
-            <span class="tech-tag">${t}</span>
+            <span class="tech-tag">${getText(t, currentLang)}</span>
         `).join('');
+
+        const projTitle = getText(proj.title, currentLang);
+        const projDesc = getText(proj.description, currentLang);
 
         return `
             <div class="project-item">
                 <div class="project-header">
                     <div class="project-title" style="color: ${proj.iconColor || 'var(--text-primary)'}">
                         <i class="${proj.icon || 'fas fa-folder'}"></i>
-                        ${proj.title}
+                        ${projTitle}
                     </div>
                     <div class="project-links">
                         ${linksHtml}
                     </div>
                 </div>
-                <p class="project-desc">${proj.description}</p>
+                <p class="project-desc">${projDesc}</p>
                 <div class="project-tech-list">
                     ${techHtml}
                 </div>
@@ -539,7 +566,7 @@ function renderProjects(projects) {
     projectsSection.innerHTML = `
         <div class="section-title">
             <div class="title-left">
-                <i class="fas fa-layer-group"></i> Dự Án Nổi Bật
+                <i class="fas fa-layer-group"></i> ${projectsTitle}
             </div>
         </div>
         <div class="projects-list">
@@ -555,13 +582,19 @@ function renderFooter(data) {
 
     const socials = data.socials || [];
     const footerInfo = data.footer || {};
+    const ui = data.ui || {};
     const currentYear = new Date().getFullYear();
+
+    const contactTitle = getText(ui.contactTitle, currentLang) || (currentLang === 'vi' ? 'Liên Hệ & Mạng Xã Hội' : 'Contact & Socials');
+    const slogan = getText(footerInfo.slogan, currentLang);
+    const author = getText(footerInfo.author, currentLang);
 
     const socialsHtml = socials.map(soc => {
         const isMailto = (soc.url || '').startsWith('mailto:');
         const targetAttr = isMailto ? '' : 'target="_blank" rel="noopener"';
+        const socName = getText(soc.name, currentLang);
         return `
-            <a href="${soc.url}" ${targetAttr} class="social-btn">
+            <a href="${soc.url}" ${targetAttr} class="social-btn" aria-label="${socName || 'Social link'}">
                 <i class="${soc.icon}"></i>
             </a>
         `;
@@ -570,7 +603,7 @@ function renderFooter(data) {
     footerSection.innerHTML = `
         <div class="section-title">
             <div class="title-left">
-                <i class="fas fa-paper-plane"></i> Liên Hệ & Mạng Xã Hội
+                <i class="fas fa-paper-plane"></i> ${contactTitle}
             </div>
         </div>
         <div class="socials-dock-wrapper">
@@ -579,8 +612,8 @@ function renderFooter(data) {
             </div>
         </div>
         <div class="footer-info">
-            ${footerInfo.slogan ? `<div class="footer-slogan">"${footerInfo.slogan}"</div>` : ''}
-            <div class="footer-author">© ${currentYear} ${footerInfo.author}</div>
+            ${slogan ? `<div class="footer-slogan">"${slogan}"</div>` : ''}
+            <div class="footer-author">© ${currentYear} ${author}</div>
         </div>
     `;
 }
