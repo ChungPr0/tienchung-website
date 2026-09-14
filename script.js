@@ -490,11 +490,11 @@ function renderSkills(skills, ui) {
                 <i class="${cat.icon || 'fas fa-code'}"></i> ${getText(cat.category, currentLang)}
             </div>
             <div class="skill-tags">
-                ${(cat.items || []).map(item => `
-                    <span class="skill-tag">
-                        <i class="${item.icon || 'fas fa-check'}"></i> ${getText(item.name, currentLang)}
-                    </span>
-                `).join('')}
+                ${(cat.items || []).map(item => {
+                    const iconHtml = (item && item.icon) ? `<i class="${item.icon}"></i>` : '';
+                    const itemName = (typeof item === 'object' && item !== null) ? item.name : item;
+                    return `<span class="skill-tag">${iconHtml}${getText(itemName, currentLang)}</span>`;
+                }).join('')}
             </div>
         </div>
     `).join('');

@@ -29,8 +29,8 @@
       "en": "Haiphong, Vietnam"
     },
     "bio": {
-      "vi": "Sinh viên năm 3 ngành Công nghệ Thông tin tại trường Đại học Thăng Long. Đam mê phát triển phần mềm với định hướng chuyên sâu về Backend (Java, Spring Boot) và ứng dụng Desktop (Java Swing, C# WinForms). Có kinh nghiệm thiết kế hệ thống RESTful API, làm việc với các hệ CSDL (MySQL, SQL Server, SQLite), tự động hóa quy trình với Docker & CI/CD, cũng như quản trị hệ thống Ubuntu Server.",
-      "en": "3rd-year Information Technology student at Thang Long University. Passionate about software development with a deep focus on Backend (Java, Spring Boot) and Desktop applications (Java Swing, C# WinForms). Experienced in designing RESTful API systems, working with relational databases (MySQL, SQL Server, SQLite), automating deployment pipelines with Docker & CI/CD, and managing Ubuntu Server environments."
+      "vi": "Sinh viên năm cuối chuyên ngành Công nghệ Thông tin tại Trường Đại học Thăng Long, định hướng phát triển chuyên sâu về Backend (Java, Spring Boot). Có nền tảng tư duy lập trình vững chắc, kinh nghiệm thiết kế kiến trúc hệ thống cơ bản và đam mê nghiên cứu tối ưu hóa hiệu năng. Khả năng tự học cao, thích ứng nhanh và tư duy giải quyết vấn đề nhạy bén.",
+      "en": "Final-year Information Technology student at Thang Long University, focusing on Backend Development (Java, Spring Boot). Possesses a strong foundation in programming and logical thinking, with hands-on experience in basic system design and a keen interest in system optimization. Fast learner with strong self-study capabilities and effective problem-solving skills."
     },
     "resumeUrl": "#"
   },
@@ -70,14 +70,14 @@
   },
   "stats": [
     {
-      "num": "3+",
+      "num": "2+",
       "label": {
         "vi": "Năm Code Java",
         "en": "Years Coding Java"
       }
     },
     {
-      "num": "9+",
+      "num": "4+",
       "label": {
         "vi": "Dự Án Cá Nhân",
         "en": "Personal Projects"
@@ -96,8 +96,8 @@
       },
       "icon": "fas fa-laptop-code",
       "items": [
-        { "name": "Java Core", "icon": "fab fa-java" },
-        { "name": "C / C# / C++", "icon": "fas fa-code" },
+        { "name": "Java", "icon": "fab fa-java" },
+        { "name": "C / C# / C++" },
         { "name": "Python", "icon": "fa-brands fa-python" },
         { "name": "HTML5 / CSS3", "icon": "fab fa-html5" },
         { "name": "SQL", "icon": "fas fa-database" }
@@ -113,7 +113,7 @@
         { "name": "Ubuntu Server", "icon": "fab fa-linux" },
         { "name": "Git & GitHub", "icon": "fab fa-git-alt" },
         { "name": "Docker", "icon": "fab fa-docker" },
-        { "name": "CI / CD", "icon": "fas fa-infinity" }
+        { "name": "CI / CD" }
       ]
     },
     {
@@ -123,8 +123,8 @@
       },
       "icon": "fas fa-gamepad",
       "items": [
-        { "name": "Minecraft Server Admin", "icon": "fas fa-cogs" },
-        { "name": "Modding Forge / NeoForge", "icon": "fas fa-puzzle-piece" }
+        { "name": "Minecraft Server Admin" },
+        { "name": "Modding Forge / NeoForge" }
       ]
     },
     {
