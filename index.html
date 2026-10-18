@@ -5,139 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- PRIMARY META TAGS -->
-    <title>Nguyễn Tiến Chung • Software Developer | Portfolio & CV</title>
-    <meta name="title" content="Nguyễn Tiến Chung • Software Developer | Portfolio & CV">
-    <meta name="description" content="Portfolio & CV của Nguyễn Tiến Chung - Backend Developer (Java, Spring Boot), sinh viên Đại học Thăng Long.">
-    <meta name="keywords" content="Nguyen Tien Chung, Nguyễn Tiến Chung, Backend Developer, Java, Spring Boot, Portfolio, CV, Thang Long University, Software Engineer">
-    <meta name="author" content="Nguyễn Tiến Chung">
-    <meta name="theme-color" content="#090a0f">
-
-    <!-- OPEN GRAPH / FACEBOOK -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tienchung.online/">
-    <meta property="og:title" content="Nguyễn Tiến Chung • Software Developer | Portfolio & CV">
-    <meta property="og:description" content="Portfolio & CV của Nguyễn Tiến Chung - Backend Developer (Java, Spring Boot), sinh viên Đại học Thăng Long.">
-    <meta property="og:image" content="avatar.jpg">
-
-    <!-- TWITTER -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://tienchung.online/">
-    <meta property="twitter:title" content="Nguyễn Tiến Chung • Software Developer | Portfolio & CV">
-    <meta property="twitter:description" content="Portfolio & CV của Nguyễn Tiến Chung - Backend Developer (Java, Spring Boot), sinh viên Đại học Thăng Long.">
-    <meta property="twitter:image" content="avatar.jpg">
-
-    <!-- FAVICON -->
+    <!-- META INFO & STYLESHEET -->
+    <title>Nguyễn Tiến Chung</title>
+    <meta name="description" content="Portfolio cá nhân của Nguyễn Tiến Chung - Software Developer">
     <link rel="icon" id="favicon-link" href="favicon.ico" type="image/x-icon">
 
-    <!-- GOOGLE FONTS -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
-    <!-- FONT AWESOME ICONS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- CUSTOM STYLESHEET -->
-    <link rel="stylesheet" href="style.css?v=3.0">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=2.1">
 </head>
 
 <body>
 
-    <!-- BACKGROUND CANVAS & AMBIENT GLOW -->
+    <!-- BACKGROUND CANVAS -->
     <canvas id="bg-canvas"></canvas>
-    <div class="ambient-glow ambient-glow-top"></div>
-    <div class="ambient-glow ambient-glow-bottom"></div>
 
-    <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toast-container" class="toast-container" aria-live="polite"></div>
-
-    <!-- TOP FLOATING NAVBAR -->
-    <nav class="navbar" id="navbar" aria-label="Main Navigation">
-        <div class="navbar-inner">
-            <a href="#profile-card" class="nav-brand" aria-label="Home">
-                <span class="brand-monogram">TC</span>
-                <span class="brand-name">Nguyễn Tiến Chung</span>
-                <span class="brand-badge">Dev</span>
-            </a>
-
-            <div class="nav-links" id="nav-links">
-                <a href="#profile-card" class="nav-link active" data-nav="about">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-link-text">Giới thiệu</span>
-                </a>
-                <a href="#journey-section" class="nav-link" data-nav="journey">
-                    <i class="fas fa-route"></i>
-                    <span class="nav-link-text">Lộ trình</span>
-                </a>
-                <a href="#skills-section" class="nav-link" data-nav="skills">
-                    <i class="fas fa-code"></i>
-                    <span class="nav-link-text">Kỹ năng</span>
-                </a>
-                <a href="#projects-section" class="nav-link" data-nav="projects">
-                    <i class="fas fa-layer-group"></i>
-                    <span class="nav-link-text">Dự án</span>
-                </a>
-                <a href="#footer-section" class="nav-link" data-nav="contact">
-                    <i class="fas fa-paper-plane"></i>
-                    <span class="nav-link-text">Liên hệ</span>
-                </a>
-            </div>
-
-            <div class="nav-actions">
-                <!-- VIEW CV BUTTON -->
-                <button type="button" class="btn-cv-glow" id="nav-btn-cv" title="Xem CV / Resume">
-                    <i class="fas fa-file-pdf"></i>
-                    <span class="btn-cv-text">Xem CV</span>
-                    <span class="btn-cv-badge">Mới</span>
-                </button>
-
-                <!-- THEME / ACCENT PICKER -->
-                <div class="theme-dropdown-wrapper">
-                    <button type="button" class="nav-icon-btn" id="btn-theme-picker" aria-label="Chọn màu chủ đạo" title="Chọn màu chủ đạo">
-                        <i class="fas fa-palette"></i>
-                    </button>
-                    <div class="theme-menu" id="theme-menu">
-                        <div class="theme-menu-title">Màu giao diện</div>
-                        <div class="theme-palette-grid">
-                            <button type="button" class="theme-color-btn active" data-theme="emerald" title="Emerald (Spring Boot)" style="--c: #10b981;"></button>
-                            <button type="button" class="theme-color-btn" data-theme="cyan" title="Electric Cyan" style="--c: #06b6d4;"></button>
-                            <button type="button" class="theme-color-btn" data-theme="violet" title="Cyber Violet" style="--c: #8b5cf6;"></button>
-                            <button type="button" class="theme-color-btn" data-theme="rose" title="Neon Rose" style="--c: #f43f5e;"></button>
-                            <button type="button" class="theme-color-btn" data-theme="amber" title="Amber Gold" style="--c: #f59e0b;"></button>
-                            <button type="button" class="theme-color-btn" data-theme="rgb" title="RGB Spectrum Flow" style="background: linear-gradient(135deg, #10b981, #06b6d4, #8b5cf6);"></button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LANGUAGE SWITCHER -->
-                <div id="lang-switcher" class="lang-switcher" aria-label="Language selector"></div>
-
-                <!-- COMMAND MENU SHORTCUT (CTRL+K) -->
-                <button type="button" class="nav-icon-btn cmd-k-btn" id="btn-cmd-palette" aria-label="Menu phím tắt" title="Menu phím tắt (Ctrl+K)">
-                    <i class="fas fa-terminal"></i>
-                    <span class="cmd-k-badge">⌘K</span>
-                </button>
-            </div>
-        </div>
-    </nav>
+    <!-- LANGUAGE SWITCHER -->
+    <div id="lang-switcher" class="lang-switcher" aria-label="Language selector"></div>
 
     <!-- MAIN CONTAINER -->
     <main class="container" id="app">
 
-        <!-- PROFILE / HERO CARD -->
+
+        <!-- HEADER INFO -->
         <header id="profile-card" class="card spotlight-card"></header>
 
-        <!-- STATS & HIGHLIGHTS -->
+        <!-- STATS -->
         <section id="stats-section" class="card spotlight-card"></section>
 
-        <!-- JOURNEY / EDUCATION & TIMELINE -->
-        <section id="journey-section" class="card spotlight-card"></section>
-
-        <!-- SKILLS & TECHNOLOGIES -->
+        <!-- SKILLS -->
         <section id="skills-section" class="card spotlight-card"></section>
 
-        <!-- FEATURED PROJECTS -->
+        <!-- PROJECTS -->
         <section id="projects-section" class="card spotlight-card"></section>
 
         <!-- FOOTER & SOCIALS -->
@@ -145,79 +53,8 @@
 
     </main>
 
-    <!-- INTERACTIVE CV VIEWER MODAL -->
-    <div class="modal-backdrop" id="cv-modal" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="cv-modal-box">
-            <div class="cv-modal-header">
-                <div class="cv-modal-title-group">
-                    <div class="cv-modal-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <div>
-                        <h2 class="cv-modal-title" id="cv-modal-title">Nguyễn Tiến Chung • Curriculum Vitae</h2>
-                        <div class="cv-modal-subtitle">
-                            <span class="cv-badge-live"><i class="fas fa-circle-check"></i> Bản mới nhất</span>
-                            <span class="cv-file-size">PDF • ~120 KB</span>
-                            <span class="cv-edu-tag">TLU (GPA 3.2/4.0)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cv-modal-controls">
-                    <a href="Nguyen-Tien-Chung-CV.pdf" target="_blank" rel="noopener" class="btn-modal-action" id="cv-btn-newtab" title="Mở trong tab mới">
-                        <i class="fas fa-arrow-up-right-from-square"></i>
-                        <span>Mở tab mới</span>
-                    </a>
-                    <a href="Nguyen-Tien-Chung-CV.pdf" download="Nguyen-Tien-Chung-CV.pdf" class="btn-modal-action btn-modal-primary" id="cv-btn-download" title="Tải xuống PDF">
-                        <i class="fas fa-download"></i>
-                        <span>Tải CV</span>
-                    </a>
-                    <button type="button" class="btn-modal-close" id="cv-btn-close" aria-label="Đóng modal">
-                        <i class="fas fa-xmark"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- EMBEDDED PDF VIEWER -->
-            <div class="cv-modal-body">
-                <iframe src="Nguyen-Tien-Chung-CV.pdf#toolbar=1&navpanes=0&scrollbar=1" class="cv-iframe" id="cv-iframe" title="CV Preview"></iframe>
-                <div class="cv-fallback">
-                    <i class="fas fa-file-pdf fallback-icon"></i>
-                    <p>Nếu trình duyệt không tự động hiển thị PDF, bạn có thể xem trực tiếp hoặc tải về:</p>
-                    <div class="fallback-actions">
-                        <a href="Nguyen-Tien-Chung-CV.pdf" target="_blank" class="btn btn-primary">
-                            <i class="fas fa-eye"></i> Mở xem file PDF
-                        </a>
-                        <a href="Nguyen-Tien-Chung-CV.pdf" download="Nguyen-Tien-Chung-CV.pdf" class="btn">
-                            <i class="fas fa-download"></i> Tải về máy
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- COMMAND PALETTE MODAL (CTRL+K) -->
-    <div class="modal-backdrop" id="cmd-palette-modal" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="cmd-palette-box">
-            <div class="cmd-palette-search">
-                <i class="fas fa-magnifying-glass"></i>
-                <input type="text" id="cmd-palette-input" placeholder="Tìm kiếm hành động, dự án, thông tin liên hệ... (Esc để đóng)" autocomplete="off">
-                <kbd class="cmd-palette-kbd">Esc</kbd>
-            </div>
-            <div class="cmd-palette-list" id="cmd-palette-list">
-                <!-- Dynamically generated commands -->
-            </div>
-            <div class="cmd-palette-footer">
-                <span><kbd>↑</kbd> <kbd>↓</kbd> Di chuyển</span>
-                <span><kbd>Enter</kbd> Chọn</span>
-                <span><kbd>Esc</kbd> Thoát</span>
-            </div>
-        </div>
-    </div>
-
     <!-- APP SCRIPT -->
-    <script src="script.js?v=3.0"></script>
+    <script src="script.js?v=2.1"></script>
 </body>
 
 </html>
