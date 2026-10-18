@@ -92,10 +92,6 @@
         "vi": "Dự Án Trong CV",
         "en": "Projects in CV"
       }
-    },
-    {
-      "num": "99.9%",
-      "label": "Server Uptime (Docker/VPS)"
     }
   ],
   "skills": [
