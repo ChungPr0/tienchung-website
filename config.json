@@ -1,12 +1,12 @@
 {
   "meta": {
     "title": {
-      "vi": "Nguyễn Tiến Chung",
-      "en": "Nguyen Tien Chung"
+      "vi": "Nguyễn Tiến Chung • Software Developer",
+      "en": "Nguyen Tien Chung • Software Developer"
     },
     "description": {
-      "vi": "Portfolio cá nhân của Nguyễn Tiến Chung - Software Developer, sinh viên trường Đại học Thăng Long",
-      "en": "Personal portfolio of Nguyen Tien Chung - Software Developer, IT student at Thang Long University"
+      "vi": "Portfolio & CV của Nguyễn Tiến Chung - Java / Backend Developer, sinh viên Đại học Thăng Long",
+      "en": "Portfolio & Resume of Nguyen Tien Chung - Java / Backend Developer, IT student at Thang Long University"
     },
     "favicon": "favicon.ico"
   },
@@ -18,7 +18,10 @@
     },
     "birthYear": 2005,
     "avatar": "avatar.jpg",
-    "title": "Software Developer • IT Student @ TLU",
+    "title": {
+      "vi": "Java / Backend Developer • Sinh viên CNTT @ TLU",
+      "en": "Java / Backend Developer • IT Student @ TLU"
+    },
     "status": "Available",
     "location": {
       "vi": "Hà Nội, Việt Nam",
@@ -29,8 +32,8 @@
       "en": "Haiphong, Vietnam"
     },
     "bio": {
-      "vi": "Sinh viên năm 4 chuyên ngành Công nghệ Thông tin tại Trường Đại học Thăng Long (GPA 3.2/4.0), định hướng phát triển Backend (Java, Spring Boot) và môi trường Linux (Docker, CI/CD). Đam mê viết code sạch, dễ bảo trì, có tư duy kiến trúc hệ thống và mong muốn đóng góp vào các dự án thực tế với vị trí Java / Backend Developer.",
-      "en": "Fourth-year Information Technology student at Thang Long University (GPA 3.2/4.0), focusing on Java Backend Development (Spring Boot) and Linux environments (Docker, CI/CD). Passionate about writing clean, maintainable code and eager to contribute to production projects as a Java / Backend Developer."
+      "vi": "Sinh viên năm 4 chuyên ngành Công nghệ Thông tin tại Trường Đại học Thăng Long (GPA 3.2/4.0), có kinh nghiệm thực tế về phát triển Java Backend (Spring Boot) và môi trường Linux (Docker, CI/CD). Đam mê viết code sạch, dễ bảo trì, có tư duy kiến trúc hệ thống và mong muốn đóng góp vào các dự án thực tế với vị trí Thực tập sinh / Lập trình viên Java Backend, định hướng lâu dài về xây dựng hệ thống hiệu năng cao và mở rộng.",
+      "en": "Fourth-year Information Technology student at Thang Long University (GPA 3.2/4.0) with practical experience in Java backend development (Spring Boot) and Linux environments (Docker, CI/CD). Passionate about writing clean, maintainable code and eager to contribute to production projects as a Java/Backend Developer Intern, with a long-term focus on building scalable and high-performance systems."
     },
     "resumeUrl": "Nguyen-Tien-Chung-CV.pdf"
   },
@@ -70,70 +73,82 @@
   },
   "stats": [
     {
-      "num": "3.2",
+      "num": "3.2 / 4.0",
       "label": {
-        "vi": "GPA / 4.0 Đại học Thăng Long",
-        "en": "GPA / 4.0 @ Thang Long Univ"
+        "vi": "GPA Đại học Thăng Long",
+        "en": "GPA @ Thang Long Univ"
       }
     },
     {
       "num": "2+",
       "label": {
-        "vi": "Năm Code Java",
-        "en": "Years Coding Java"
+        "vi": "Năm Thực Chiến Java",
+        "en": "Years Hands-on Java"
       }
     },
     {
-      "num": "4+",
+      "num": "3",
       "label": {
-        "vi": "Dự Án Cá Nhân",
-        "en": "Personal Projects"
+        "vi": "Dự Án Trong CV",
+        "en": "Projects in CV"
       }
     },
     {
       "num": "99.9%",
-      "label": "Server Uptime Admin"
+      "label": "Server Uptime (Docker/VPS)"
     }
   ],
   "skills": [
     {
       "category": {
-        "vi": "Ngôn ngữ & Nền tảng",
-        "en": "Languages & Frameworks"
-      },
-      "icon": "fas fa-laptop-code",
-      "items": [
-        { "name": "Java (Core, OOP)", "icon": "fab fa-java" },
-        { "name": "Spring Boot (Security, JPA)", "icon": "fas fa-leaf" },
-        { "name": "C / C# / C++" },
-        { "name": "Python", "icon": "fa-brands fa-python" },
-        { "name": "HTML5 / CSS3", "icon": "fab fa-html5" },
-        { "name": "SQL", "icon": "fas fa-database" }
-      ]
-    },
-    {
-      "category": {
-        "vi": "Hệ thống & Mạng",
-        "en": "Systems & Networking"
+        "vi": "Backend & Frameworks",
+        "en": "Backend & Frameworks"
       },
       "icon": "fas fa-server",
       "items": [
-        { "name": "Ubuntu Server", "icon": "fab fa-linux" },
-        { "name": "Git & GitHub", "icon": "fab fa-git-alt" },
-        { "name": "Docker", "icon": "fab fa-docker" },
-        { "name": "CI / CD (GitHub Actions)" }
+        { "name": "Spring Boot (Security, JPA)", "icon": "fas fa-leaf" },
+        { "name": "RESTful APIs", "icon": "fas fa-network-wired" },
+        { "name": "MySQL, SQLite", "icon": "fas fa-database" },
+        { "name": "Maven, Gradle", "icon": "fas fa-cubes" }
       ]
     },
     {
       "category": {
-        "vi": "Game Server & Quản trị",
-        "en": "Game Server & Administration"
+        "vi": "Ngôn ngữ lập trình",
+        "en": "Programming Languages"
+      },
+      "icon": "fas fa-code",
+      "items": [
+        { "name": "Java (Core, OOP)", "icon": "fab fa-java" },
+        { "name": "Python, C/C++", "icon": "fab fa-python" },
+        { "name": "SQL", "icon": "fas fa-database" },
+        { "name": "HTML, CSS, JavaScript", "icon": "fab fa-html5" }
+      ]
+    },
+    {
+      "category": {
+        "vi": "Hệ thống & DevOps",
+        "en": "Systems & DevOps"
+      },
+      "icon": "fas fa-cloud",
+      "items": [
+        { "name": "Linux (Ubuntu Server)", "icon": "fab fa-linux" },
+        { "name": "Git & GitHub", "icon": "fab fa-git-alt" },
+        { "name": "Docker", "icon": "fab fa-docker" },
+        { "name": "CI / CD (GitHub Actions)", "icon": "fas fa-gears" }
+      ]
+    },
+    {
+      "category": {
+        "vi": "Khác & Game Server",
+        "en": "Other & Game Servers"
       },
       "icon": "fas fa-gamepad",
       "items": [
-        { "name": "JDA (Discord Bot)", "icon": "fab fa-discord" },
-        { "name": "Minecraft Server Admin" },
-        { "name": "Modding Forge / NeoForge" }
+        { "name": "JDA (Java Discord API)", "icon": "fab fa-discord" },
+        { "name": "Java Swing (Desktop GUI)", "icon": "fas fa-desktop" },
+        { "name": "Minecraft Server Admin", "icon": "fas fa-cube" },
+        { "name": "Modding Forge / NeoForge", "icon": "fas fa-puzzle-piece" }
       ]
     },
     {
@@ -145,13 +160,16 @@
       "items": [
         {
           "name": {
-            "vi": "Tiếng Việt",
-            "en": "Vietnamese"
+            "vi": "Tiếng Việt (Bản ngữ)",
+            "en": "Vietnamese (Native)"
           },
           "icon": "fas fa-globe"
         },
         {
-          "name": "English",
+          "name": {
+            "vi": "English (Đọc hiểu tài liệu)",
+            "en": "English (Technical reading)"
+          },
           "icon": "fas fa-globe"
         },
         {
@@ -174,8 +192,8 @@
       "icon": "fas fa-clinic-medical",
       "iconColor": "#4ade80",
       "description": {
-        "vi": "Hệ thống RESTful API quản lý và bán lẻ dược phẩm cho nhà thuốc. Thiết kế kiến trúc phân lớp, bảo mật với Spring Security & JWT kèm phân quyền RBAC, cơ sở dữ liệu MySQL với Spring Data JPA, tích hợp CI/CD tự động deploy Docker lên VPS Linux.",
-        "en": "RESTful API system for pharmaceutical inventory and retail store management. Designed with layered architecture, secured using Spring Security & JWT with RBAC, MySQL with Spring Data JPA, and automated VPS deployment via GitHub Actions & Docker CI/CD."
+        "vi": "Tech Leader / Backend Developer (03/2026 - 05/2026)<br>• Thiết kế kiến trúc RESTful API đa tầng (Layered Architecture) cho hệ thống quản lý kho, bán hàng và đơn thuốc.<br>• Bảo mật hệ thống với Spring Security & JWT, phân quyền RBAC và validation dữ liệu chặt chẽ.<br>• Thiết lập pipeline CI/CD với GitHub Actions tự động build và triển khai Docker container lên máy chủ Linux VPS.",
+        "en": "Tech Leader / Backend Developer (Mar 2026 - May 2026)<br>• Architected a RESTful API following layered architecture for medicine inventory, sales, and order management.<br>• Secured endpoints using Spring Security and JWT; implemented Role-Based Access Control (RBAC) and data validation.<br>• Configured automated CI/CD pipelines with GitHub Actions to build and deploy Docker containers to a Linux VPS."
       },
       "tech": [
         "Java 17",
@@ -198,14 +216,14 @@
     {
       "id": "retail-pos-system",
       "title": {
-        "vi": "Phần Mềm Quản Lý Bán Hàng (POS Java Swing)",
-        "en": "Store Management POS (Java Swing)"
+        "vi": "Point of Sale System (Java Swing)",
+        "en": "Point of Sale System (Java Swing)"
       },
       "icon": "fas fa-desktop",
       "iconColor": "#38bdf8",
       "description": {
-        "vi": "Phần mềm quản lý bán hàng desktop cho cửa hàng bán lẻ theo mô hình MVC. Tích hợp CSDL nhúng SQLite qua JDBC đảm bảo giao dịch toàn vẹn (ACID), hỗ trợ xuất hóa đơn, phân quyền Admin/Thu ngân và theo dõi tồn kho thời gian thực.",
-        "en": "Desktop retail POS management system applying MVC architecture and automated invoice generation. Integrated embedded SQLite via JDBC with ACID compliance, role-based controls (Admin/Cashier), and real-time inventory tracking."
+        "vi": "Team Leader / Backend Developer (12/2025 - 01/2026)<br>• Phát triển phần mềm quản lý bán hàng (POS) desktop áp dụng mô hình kiến trúc MVC và tự động xuất hóa đơn.<br>• Tích hợp cơ sở dữ liệu nhúng SQLite qua JDBC, đảm bảo tính toàn vẹn giao dịch (ACID) khi thanh toán.<br>• Thiết kế phân quyền người dùng (Admin/Thu ngân) và module báo cáo theo dõi hàng tồn kho theo thời gian thực.",
+        "en": "Team Leader / Backend Developer (Dec 2025 - Jan 2026)<br>• Developed a desktop POS management system applying MVC architecture for retail sales and automated invoice generation.<br>• Integrated an embedded SQLite database using JDBC, ensuring transaction integrity (ACID) during checkout operations.<br>• Designed role-based privilege controls (Admin/Cashier) and reporting modules for real-time inventory tracking."
       },
       "tech": [
         "Java 17",
@@ -222,32 +240,6 @@
       ]
     },
     {
-      "id": "pos-csharp-winforms",
-      "title": {
-        "vi": "Phần Mềm Quản Lý Bán Hàng (POS C# WinForms)",
-        "en": "Store Management POS (C# WinForms)"
-      },
-      "icon": "fas fa-desktop",
-      "iconColor": "#a855f7",
-      "description": {
-        "vi": "Giải pháp phần mềm quản lý bán hàng toàn diện trên nền tảng C# WinForms & CSDL SQL Server. Giao diện hiện đại, kiến trúc phân tầng tối ưu. Hỗ trợ thống kê báo cáo, quản lý kho, tạo và xuất hóa đơn, phân quyền người dùng.",
-        "en": "Comprehensive point-of-sale management software built with C# WinForms & SQL Server. Modern user interface with optimized layered design. Supports business analytics, inventory tracking, bill printing, and role-based access control."
-      },
-      "tech": [
-        "C# 10",
-        ".NET 10",
-        "WinForms",
-        "SQL Server"
-      ],
-      "links": [
-        {
-          "type": "github",
-          "url": "https://github.com/ChungPr0/DotNet-Store-Manager",
-          "icon": "fab fa-github"
-        }
-      ]
-    },
-    {
       "id": "discord-manager-bot",
       "title": {
         "vi": "Multi-functional Discord Bot (Java)",
@@ -256,15 +248,16 @@
       "icon": "fab fa-discord",
       "iconColor": "#5865f2",
       "description": {
-        "vi": "Trợ lý Discord hướng sự kiện (Event-driven) xây dựng trên nền tảng JDA qua kết nối WebSocket. Xử lý bất đồng bộ quản lý kênh thoại, tự động cấp phát rank, custom banner chào mừng và tích hợp CI/CD tự động deploy Docker chạy 24/7 trên VPS Linux.",
-        "en": "Event-driven automation bot utilizing JDA (Java Discord API) via WebSocket connections. Handles asynchronous tasks for moderation, dynamic voice channels, role assignments, and automated 24/7 VPS deployment with GitHub Actions & Docker."
+        "vi": "Independent Developer (04/2026 - Hiện tại)<br>• Xây dựng bot tự động hóa hướng sự kiện (Event-driven) sử dụng JDA (Java Discord API) qua kết nối WebSocket.<br>• Xử lý các tác vụ bất đồng bộ phục vụ kiểm duyệt tự động, quản lý kênh thoại/văn bản và tương tác cộng đồng.<br>• Đóng gói dependencies bằng Maven và tự động hóa triển khai liên tục 24/7 trên máy chủ Ubuntu Linux bằng Docker.",
+        "en": "Independent Developer (Apr 2026 - Present)<br>• Developed an event-driven automation bot utilizing JDA (Java Discord API) via WebSocket connections.<br>• Handled asynchronous tasks for automated moderation, text/voice channel management, and custom interactions.<br>• Packaged dependencies with Maven and automated continuous 24/7 deployment on an Ubuntu Linux server using Docker."
       },
       "tech": [
         "Java 17",
         "JDA",
         "Maven",
         "Docker",
-        "CI/CD"
+        "CI/CD",
+        "Linux"
       ],
       "links": [
         {
@@ -279,12 +272,17 @@
     {
       "name": "Email",
       "icon": "fas fa-envelope",
-      "url": "https://mail.google.com/mail/?view=cm&fs=1&to=tienchung310725@gmail.com"
+      "url": "mailto:tienchung310725@gmail.com"
     },
     {
       "name": "Phone",
       "icon": "fas fa-phone",
       "url": "tel:0833190583"
+    },
+    {
+      "name": "Website",
+      "icon": "fas fa-globe",
+      "url": "https://tienchung.online"
     },
     {
       "name": "GitHub",
